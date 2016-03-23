@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo02</title>
+    <script src="src/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in items">{{$index}} -> {{item.name}}</li>
+            <li v-for="(index,value) in items2">{{index}} - >{{value[index].keys(index)}}</li>
+        </ul>
+    </div>
+    <script>
+        var items = [{
+            name : "服务器A"
+        },{
+            name : "服务器B"
+        },{
+            name : "服务器C"
+        }];
+
+        var items2 =[
+            {  "11111" : "a"},
+            {  "22222": "b"}
+        ]
+
+        // 集合渲染
+        new Vue({
+            el : "#app",
+            data : {
+                items : items,
+                items2 :items2
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo06</title>
+    <script src="src/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>自定义filter双绑参数</h1>
+        <input type="text" v-model="key">
+        <child :name.sync="key"></child>
+    </div>
+    <script>
+        var child = Vue.extend({
+             props: ['name'],
+             template :'<div><table >'+
+                          '<tr v-for="book in books| myFilter name ">'+
+                                '<td>{{book.id}}</td>'+
+                                '<td>{{book.name}}</td>'+
+                                '<td>{{book.author}}</td>'+
+                                '<td>{{book.price}}</td>'+
+                            '</tr>'+
+                        '</table>'+
+                         '<p>{{name}}</p><input type="button" v-on:click="changeA" value="改变A"/></div>',
+             data : function() {
+                 return {
+                    books : [
+                        {"id":1,"name":"A","author":"x",price:"12.5"},
+                        {"id":2,"name":"B","author":"y",price:"22.5"},
+                        {"id":3,"name":"C","author":"z",price:"33.5"}
+                    ]
+                 }
+             },
+             methods :{
+               changeA:function(){
+                  this.name = "C";      
+               } 
+             },
+             filters : {
+                myFilter : function(val,name) {
+                    var arr = [];
+                    val.forEach(function(it){
+                        if(it.name ==name)arr.push(it);
+                    })
+                    if(arr.length==0)return val;
+                    return arr;
+                }
+             }
+        });
+         new Vue({
+             el : "#app",
+             data : {
+                 key: 'A',
+             },
+             components:{
+               child:child
+             }
+         })
+    </script>
+</body>
+</html>

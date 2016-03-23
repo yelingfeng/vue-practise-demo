@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo04</title>
+    <script src="src/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="calA" size="10"/>  +
+        <input type="text" v-model="calB" size="10"/>
+        <p>结果:{{result}}</p>
+    </div>
+    <script>
+        // 组件
+        new Vue({
+            el : "#app",
+            data : function(){
+                return {
+                    calA : 0,
+                    calB : 0,
+                    result :0
+                }
+            },
+            // 计算属性
+            computed : {
+                result : function(){
+                    return parseInt(this.calA,10) + parseInt(this.calB,10);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

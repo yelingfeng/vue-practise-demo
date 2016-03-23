@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo05</title>
+    <script src="src/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+         <p>根组件:</p>
+         <compa v-for="item in childs" :option="item"></compa>
+    </div>
+    <script>
+        var compb = Vue.extend({
+            template : "<p @click='methods('123')'>孙子组件 :{{id}} </p>",
+            props:['id']
+        })
+        var compa = Vue.extend({
+            template : "<div>子组件 :{{option.id}}--{{option.name}}<compb :id='option.id'></compb></div>",
+            props:['option'],
+            components :{
+                compb: compb
+            },
+            ready:function(){
+                console.log(compa.$dispatch)
+                compa.$dispatch('messageP');
+            },
+
+        });
+        // 组件嵌套例子
+        var vm =new Vue({
+            el : "#app",
+            ready: function(){
+                var me = this;
+                setTimeout(function(){
+                    var data =[{ id:1,  name : "A" },{ id:2,  name : "B"}];
+                    me.$set('childs',data);
+                },500)
+            },
+            data :{
+                childs : [
+                    {"id":"1",name:"AA"}
+//                    { "A" : {
+//                        b : [
+//                            {name:"ha",age:"3"}
+//                        ]
+//                    }}
+                ]
+            },
+            components:{
+              compa:compa
+            },
+            methods:{
+                messageP : function(){
+                    alert(123);
+                }
+            }
+        });
+//        vm.$log('childs[0].A.b[0].age')
+        vm.$log('childs')
+
+    </script>
+</body>
+</html>

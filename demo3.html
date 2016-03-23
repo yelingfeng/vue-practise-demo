@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo03</title>
+    <script src="src/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <comp-a name="hello"></comp-a>
+    </div>
+    <script>
+        //创建组件
+        var compA = Vue.extend({
+            template : "<div><p>my name is {{name}}</p></div>",
+            props : ['name']
+        })
+
+        //Vue.component('comp-a', compA)
+
+        // 组件
+        new Vue({
+            el : "#app",
+            components : {
+                // 注意驼峰类型的组件变量名要转成-
+                "comp-a":compA
+            }
+        })
+    </script>
+</body>
+</html>

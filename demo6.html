@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo06</title>
+    <script src="src/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <select @change="changeSelect" v-model="selected"  >
+            <option  v-for="item in list1" value="{{item.value}}">{{item.name}}</option>
+        </select>
+        <select  >
+            <option  v-for="item in list2" value="{{item.value}}">{{item.name}}</option>
+        </select>
+    </div>
+    <script>
+         new Vue({
+             el : "#app",
+             data : {
+                 selected:"2",
+                 list1 : [{"value":1,"name":"A"},{"value":2,"name":"B"}],
+                 list2 : []
+             },
+             methods:{
+                 changeSelect : function(){
+                     var value = this.selected;
+                     if(value=="1"){
+                         this.list2 = [{value:"1",name:"AA"}]
+                     }
+                     if(value=="2"){
+                         this.list2 = [{value:"1",name:"BB"},{value:"2",name:"CC"}]
+                     }
+                 }
+             }
+         })
+
+    </script>
+</body>
+</html>
