@@ -12,21 +12,23 @@
     </div>
     <script>
         var compb = Vue.extend({
-            template : "<p @click='methods('123')'>孙子组件 :{{id}} </p>",
-            props:['id']
+            template : "<p @click='cc(id)'>----孙子组件 :{{id}} 点击我 调用根组件方法 </p>",
+            props:['id'],
+            methods : {
+                cc  : function(arg){
+                    this.$dispatch('message',arg)
+                }
+            }
         })
         var compa = Vue.extend({
-            template : "<div>子组件 :{{option.id}}--{{option.name}}<compb :id='option.id'></compb></div>",
+            template : "<div>--子组件 :{{option.id}}--{{option.name}}<compb :id='option.id'></compb></div>",
             props:['option'],
             components :{
                 compb: compb
-            },
-            ready:function(){
-                console.log(compa.$dispatch)
-                compa.$dispatch('messageP');
-            },
-
+            }
         });
+
+
         // 组件嵌套例子
         var vm =new Vue({
             el : "#app",
@@ -38,26 +40,29 @@
                 },500)
             },
             data :{
-                childs : [
-                    {"id":"1",name:"AA"}
-//                    { "A" : {
-//                        b : [
-//                            {name:"ha",age:"3"}
-//                        ]
-//                    }}
+                childs : [],
+                path :[
+                    {"A" : {
+                        b :[
+                            {name : "qqq" , v : "123"}
+                        ]
+                    }}
                 ]
             },
             components:{
               compa:compa
             },
-            methods:{
-                messageP : function(){
-                    alert(123);
+            events:{
+                message : function(id){
+                    alert(id);
                 }
             }
         });
-//        vm.$log('childs[0].A.b[0].age')
-        vm.$log('childs')
+
+         // log根据path打印属性
+         vm.$log('path[0].A.b[0].v')
+         vm.$log('path[0].A.b[0].name')
+
 
     </script>
 </body>
