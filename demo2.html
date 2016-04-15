@@ -3,13 +3,22 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>demo02</title>
-    <script src="src/vue.js"></script>
+    <!--<script src="src/vue.js"></script>-->
+    <script src="src/vue.1.0.21.js"></script>
 </head>
 <body>
     <div id="app">
+        <p>正常集合</p>
         <ul>
             <li v-for="item in items">{{$index}} -> {{item.name}}</li>
-            <li v-for="(index,value) in items2">{{index}} - >{{value[index].keys(index)}}</li>
+        </ul>
+        <p>集合嵌对象-用到了filter</p>
+        <ul>
+            <li v-for="(index,value) in items2">{{index}} - >{{value|getObj}} </li>
+        </ul>
+        <p>1.0.21 v-for of</p>
+        <ul>
+            <li v-for="item of items3">{{item.name}}</li>
         </ul>
     </div>
     <script>
@@ -26,12 +35,26 @@
             {  "22222": "b"}
         ]
 
+
+        var items3 = [
+            { "name" : "Object1"},
+            { "name" : "Object2"},
+            { "name" : "Object3"},
+        ]
+
         // 集合渲染
         new Vue({
             el : "#app",
             data : {
                 items : items,
-                items2 :items2
+                items2 :items2,
+                items3 :items3
+            },
+            filters : {
+                getObj : function(it){
+                    var keys = Object.keys(it);
+                    return  keys[0] + "-"+  it[keys[0]];
+                }
             }
         })
     </script>
