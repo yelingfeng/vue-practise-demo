@@ -1,5 +1,9 @@
 # vue-practise-demo
 
+## new
+* 修复了demo2和demo5的问题  
+
+
 ### Learning list
 * demo1 双向数据绑定
 * demo2 vfor指令的多种用法
