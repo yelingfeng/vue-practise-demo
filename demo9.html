@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo06</title>
+    <script src="src/vue.1.0.22.js"></script>
+</head>
+<body>
+    <h1>1.22版本 api例子</h1>
+    <h2>父子创建例子</h2>
+    <div id="app">
+    </div>
+    <div id="app2">
+    </div>
+
+    <h2>propsData例子</h2>
+
+    <div id="app3">
+    </div>
+
+
+    <h2>currency</h2>
+    <div id="app4">
+        <p>{{price | currency '$' 1  }}</p>
+    </div>
+    <script>
+
+        var Parent = Vue.extend({
+            template : "<div><p>{{p1}} -- {{p2}} -- {{p3}}</p></div>"
+        })
+
+        var child1 = new Parent({
+            data : {
+                p1 : "child1p1",
+                p2 : "child1p2",
+                p3:  "child1p3",
+            }
+        })
+        var child2 = new Parent({
+            data : {
+                p1 : "child2p1",
+                p2 : "child2p2",
+                p3:  "child2p3",
+            }
+        })
+
+        child1.$mount("#app");
+        child2.$mount("#app2");
+
+
+        var Comp = Vue.extend({
+            props: ['msg'],
+            template: '<div>{{ msg }}</div>'
+        })
+
+        var vm = new Comp({
+            el : "#app3",
+            propsData: {
+                msg: 'hello'
+            }
+        })
+
+
+        new Vue({
+            data : {
+                price : 12345
+            },
+            el : "#app4"
+        })
+
+    </script>
+</body>
+</html>
