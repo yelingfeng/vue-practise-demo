@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue2.0 demo02</title>
+	<style type="text/css">
+		 body ,div{
+			margin: 0;
+			padding: 0
+		 }	
+		 .s1 {
+		 	color :red;
+		 }	
+	</style>
+</head>
+<body>
+	<div id="el"></div>
+
+    <script type="text/javascript" src="../../node_modules/vue/dist/vue.min.js"></script>
+    <script type="text/javascript">
+    	
+
+    	// 例子2 render vnode 
+    	var vm = new Vue({
+    		el :"#el",
+    		data : {
+    			text :"hello vue2"
+    		},
+    		render() {
+    			var h = this.$createElement;
+    			return h("span",{
+    				attrs:{
+    					class : "s1"
+    				}	
+    			},[this.text])	
+    		}
+    	})
+
+
+
+    </script>
+
+</body>
+</html>

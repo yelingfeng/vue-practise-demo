@@ -1,0 +1,28 @@
+{
+  "name": "vue-practise-demo",
+  "version": "1.0.0",
+  "description": "vue practise",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yelingfeng/vue-practise-demo.git"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "yelingfeng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yelingfeng/vue-practise-demo/issues"
+  },
+  "homepage": "https://github.com/yelingfeng/vue-practise-demo#readme",
+  "devDependencies": {
+    "vue": "^2.0.0-alpha.8"
+  }
+}

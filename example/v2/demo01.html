@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue2.0 demo01</title>
+</head>
+<body>
+
+	<div id="el"></div>
+
+
+    <script type="text/javascript" src="../../node_modules/vue/dist/vue.min.js"></script>
+    <script type="text/javascript">
+    	
+
+    	// 例子1  直接可以es6的 template `` 语法 貌似浏览器的功劳
+    	var vm = new Vue({
+    		el :"#el",
+    		data : {
+    			text :"hello vue2"
+    		},
+    		template :`
+    			<span>{{text}}</span>
+    		` 
+    	})
+
+    </script>
+
+</body>
+</html>

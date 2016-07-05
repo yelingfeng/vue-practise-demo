@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue2.0 demo03</title>
+</head>
+<body>
+	<div id="el">
+         <my-component>
+                <!--定义slot名字-->
+                <span slot="s1" > children slot1 success</span>
+                <span slot="s2"> children slot2 success</span>
+        </my-component>    
+    </div>
+    <script type="text/javascript" src="../../node_modules/vue/dist/vue.min.js"></script>
+    <script type="text/javascript">
+    	Vue.component('my-component',{
+            data(){
+                return {
+                     text :"hello vue2"
+                }
+            },
+            render() {
+                var h = this.$createElement;
+                var children = this.$slots;
+                // var defaulChildren = children.default;
+                // $slots直接取s1 ,s2
+                var s1 = this.$slots.s1;
+                var s2 = this.$slots.s2;
+                //console.log(s1,s2)
+                return h("div",{
+                        attrs:{
+                            id : "render-x",
+                        },
+                        
+                    },[s1,s2])  
+            }
+        })
+    	// 例子3 slot例子
+    	var vm = new Vue({
+    		el :"#el"
+    	})
+    </script>
+
+</body>
+</html>
